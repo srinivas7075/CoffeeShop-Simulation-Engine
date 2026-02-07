@@ -38,6 +38,7 @@ const OrderForm = ({ onOrderPlaced }) => {
                         type="text"
                         required
                         value={customerName}
+                        placeholder="e.g. Alice"
                         onChange={(e) => setCustomerName(e.target.value)}
                         className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-coffee-500 focus:ring-coffee-500 sm:text-sm p-2 border"
                     />

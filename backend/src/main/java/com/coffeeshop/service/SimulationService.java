@@ -299,18 +299,39 @@ public class SimulationService {
 
         for (int i = 0; i < n; i++) {
             // Drink
+            // Drink Selection based on Requirement Frequencies
+            // Cold Brew 25%, Espresso 20%, Americano 15%, Cappuccino 20%, Latte 12%,
+            // Specialty 8%
+            double r = rand.nextDouble() * 100;
             DrinkType drink;
-            if (rand.nextDouble() < espressoChance) {
-                drink = DrinkType.ESPRESSO; // or Americano
-            } else {
-                drink = types[rand.nextInt(types.length)];
-            }
+            if (r < 25)
+                drink = DrinkType.COLD_BREW;
+            else if (r < 45)
+                drink = DrinkType.ESPRESSO; // 25 + 20
+            else if (r < 60)
+                drink = DrinkType.AMERICANO; // 45 + 15
+            else if (r < 80)
+                drink = DrinkType.CAPPUCCINO; // 60 + 20
+            else if (r < 92)
+                drink = DrinkType.LATTE; // 80 + 12
+            else
+                drink = DrinkType.SPECIALTY_MOCHA; // Remaining 8%
 
             // Loyalty
             boolean isLoyal = rand.nextDouble() < loyaltyChance;
 
             // Arrival Time
-            int interval = (int) (arrivalRateMean * (0.5 + rand.nextDouble()));
+            // Arrival: Poisson distribution (lambda = 1.4 customers/minute)
+            // Time between arrivals = Exponential distribution with mean 1/lambda
+            // Mean inter-arrival time = 1 / 1.4 min = ~43 seconds
+            // Formula: -ln(U) / lambda
+            double lambda = 1.4 / 60.0; // customers per second
+            double u = rand.nextDouble();
+            int interval = (int) (-Math.log(1.0 - u) / lambda);
+
+            // Allow override for stress tests
+            if (testId == 5)
+                interval = (int) (interval * 0.5); // Rush
 
             // ADDED: Leisure Time / Lulls
             // 8% chance of a gap between 2 to 5 minutes
