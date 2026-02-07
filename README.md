@@ -33,7 +33,21 @@ The core engine. Handles:
 ### Model (`PriorityCalculator.java`)
 The "Brain" of the operation. Calculates a normalized score (0-100) for every order to determine processing sequence.
 
-## 📦 Installation & Run
+## 🐳 Quick Start (Docker)
+
+Run the system instantly without installing Java or Node.js:
+
+1.  **Run Backend**:
+    ```bash
+    docker run -p 8080:8080 srinivas7075/coffeeshop-backend:latest
+    ```
+2.  **Run Frontend**:
+    ```bash
+    docker run -p 5173:5173 srinivas7075/coffeeshop-frontend:latest
+    ```
+3.  Open `http://localhost:5173` in your browser.
+
+## 📦 Local Installation (Dev Mode)
 
 ### Backend
 1.  Navigate to `backend`:
@@ -44,6 +58,7 @@ The "Brain" of the operation. Calculates a normalized score (0-100) for every or
     ```bash
     ./mvnw spring-boot:run
     ```
+    *(Windows: `.\mvnw.cmd spring-boot:run`)*
     *Server starts on port 8080.*
 
 ### Frontend
@@ -59,7 +74,7 @@ The "Brain" of the operation. Calculates a normalized score (0-100) for every or
     ```bash
     npm run dev
     ```
-    *Client starts on port 5173 (or 3000).*
+    *Client starts on port 5173.*
 
 ## 📊 Usage
 
