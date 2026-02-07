@@ -1,0 +1,20 @@
+# Backend - Java/Spring
+backend/target/
+backend/*.iml
+backend/.idea/
+backend/.mvn/wrapper/maven-wrapper.properties
+backend/mvnw
+backend/mvnw.cmd
+backend/help.md
+
+# Frontend - Node/React
+frontend/node_modules/
+frontend/dist/
+frontend/.env
+frontend/.DS_Store
+frontend/coverage/
+
+# Simulation Data
+simulation_results_*.csv
+simulation_dataset_inputs_*.csv
+*.log
